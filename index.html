@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modo Estar Bien</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('meb.jpg'); /* Cambia esto por la URL de tu imagen de fondo */
+            background-size: cover;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 3em;
+            color: #4CAF50;
+            margin-top: 20px;
+        }
+        .intro {
+            font-size: 1.2em;
+            margin: 20px;
+            color: #555;
+        }
+        .rainbow-buttons {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .rainbow-buttons button {
+            font-size: 1em;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        .rainbow-buttons button:hover {
+            transform: scale(1.1);
+        }
+        .rainbow-buttons .lunes { background-color: #FF0000; } /* Rojo */
+        .rainbow-buttons .martes { background-color: #FF7F00; } /* Naranja */
+        .rainbow-buttons .miércoles { background-color: #FFFF00; } /* Amarillo */
+        .rainbow-buttons .jueves { background-color: #00FF00; } /* Verde */
+        .rainbow-buttons .viernes { background-color: #0000FF; } /* Azul */
+        .rainbow-buttons .sábado { background-color: #4B0082; } /* Índigo */
+        .rainbow-buttons .domingo { background-color: #8B00FF; } /* Violeta */
+        .video-container {
+            display: none;
+            margin: 20px;
+        }
+        .video-container iframe {
+            width: 80%;
+            height: 400px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .message {
+            font-size: 1.2em;
+            color: #4CAF50;
+            margin-top: 20px;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <h1>Modo Estar Bien</h1>
+    <p class="intro">La importancia de las pausas activas</p>
+
+    <div class="rainbow-buttons">
+        <button class="lunes" onclick="showVideo('lunes')">Lunes</button>
+        <button class="martes" onclick="showVideo('martes')">Martes</button>
+        <button class="miércoles" onclick="showVideo('miércoles')">Miércoles</button>
+        <button class="jueves" onclick="showVideo('jueves')">Jueves</button>
+        <button class="viernes" onclick="showVideo('viernes')">Viernes</button>
+        <button class="sábado" onclick="showVideo('sábado')">Sábado</button>
+        <button class="domingo" onclick="showVideo('domingo')">Domingo</button>
+    </div>
+
+    <div id="video-container" class="video-container">
+        <div id="player"></div>
+        <p class="message">¡Continúa con tu día!</p>
+    </div>
+
+    <script>
+        const videos = {
+            lunes: '4OLBO7CIG_Y?si=sIhCV8U91pZHLm3j',
+            martes: 'CJSbcmJ0P-I?si=eDhgVBeoZA8YmWAI',
+            miércoles: 'UX9Cf36fSOU?si=cf-P-PcfwKuhMAAl',
+            jueves: 'hwT8938oEUA?si=E2QnT1ODTNkKRZ8r',
+            viernes: 'xTYKmEal5Bo?si=Z3zp7CKVjz4UKVBE',
+            sábado: 'CaITb5YWHxE?si=QRN4VOnl6TVFf4UV'
+        };
+
+        function showVideo(day) {
+            const videoContainer = document.getElementById('video-container');
+            const player = new YT.Player('player', {
+                height: '400',
+                width: '80%',
+                videoId: videos[day],
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+            videoContainer.style.display = 'block';
+        }
+
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // Load the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    </script>
+</body>
+</html>
